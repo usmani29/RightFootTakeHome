@@ -4,39 +4,40 @@ import java.util.Map;
 public class MainApplication {
 
     public static int numberOfBoomerangs(double[][] points) {
+        int result = 0;
+
         if(points == null || points.length == 0) {
-            return 0;
+            return result;
         }
 
-        int result = 0;
-        Map<Double, Integer> map = new HashMap<>();
+        Map<Double, Integer> distances = new HashMap<>();
 
         for(int i = 0; i < points.length; i++) {
             for(int j = 0; j < points.length; j++) {
                 if(i == j)
                     continue;
 
-                double d = Math.round(getDistance(points[i], points[j]));
-                map.put(d, map.getOrDefault(d, 0) + 1);
+                double distance = Math.round(getDistance(points[i], points[j]));
+                distances.put(distance, distances.getOrDefault(distance, 0) + 1);
             }
-            for(int val : map.values()) {
-                if(val >= 3) {
-                    result += val;
-                } else if(val > 1) {
-                    result += (val - 1);
+            for(int frequencies : distances.values()) {
+                if(frequencies >= 3) {
+                    result += frequencies;
+                } else if(frequencies > 1) {
+                    result += (frequencies - 1);
                 }
             }
-            map.clear();
+            distances.clear();
         }
 
         return result;
     }
 
     private static double getDistance(double[] a, double[] b) {
-        double dx = a[0] - b[0];
-        double dy = a[1] - b[1];
+        double x = a[0] - b[0];
+        double y = a[1] - b[1];
 
-        return dx*dx + dy*dy;
+        return x*x + y*y;
     }
 
 
