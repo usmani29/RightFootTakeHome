@@ -20,14 +20,39 @@ public class MainApplication {
                 double distance = Math.round(getDistance(points[i], points[j]));
                 distances.put(distance, distances.getOrDefault(distance, 0) + 1);
             }
-            for(int frequencies : distances.values()) {
-                if(frequencies >= 3) {
-                    result += frequencies;
-                } else if(frequencies > 1) {
-                    result += (frequencies - 1);
+            for(int frequency : distances.values()) {
+                if(frequency >= 3) {
+                    result += frequency;
+                } else if(frequency > 1) {
+                    result += (frequency - 1);
                 }
             }
             distances.clear();
+        }
+
+        return result;
+    }
+
+    public static int numberOfBoomerangsBruteForce(double[][] points) {
+        int result = 0;
+
+        if(points == null || points.length == 0) {
+            return result;
+        }
+
+        for(int i = 0; i < points.length; i++) {
+            for(int j = 0; j < points.length; j++) {
+                for(int k = j + 1; k < points.length; k++) {
+                    if(i == j) {
+                        continue;
+                    }
+                    double distanceJ = Math.round(getDistance(points[i], points[j]));
+                    double distanceK = Math.round(getDistance(points[i], points[k]));
+                    if(distanceJ == distanceK) {
+                        result++;
+                    }
+                }
+            }
         }
 
         return result;

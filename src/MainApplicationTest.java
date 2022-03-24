@@ -56,4 +56,51 @@ public class MainApplicationTest {
         assert result == 0;
     }
 
+    @Test
+    public void shouldFindOneBoomerangBruteForce() {
+        double[][] points = new double[3][2];
+        points[0] = new double[] {0,0};
+        points[1] = new double[] {1,0};
+        points[2] = new double[] {2,0};
+        int result = mainApplication.numberOfBoomerangsBruteForce(points);
+
+        assert result == 1;
+    }
+
+    @Test
+    public void shouldFindThreeBoomerangsEquidistantBruteForce() {
+        double[][] points = new double[3][2];
+        points[0] = new double[] {0,0};
+        points[1] = new double[] {1,Math.sqrt(3)};
+        points[2] = new double[] {2,0};
+        int result = mainApplication.numberOfBoomerangsBruteForce(points);
+
+        assert result == 3;
+    }
+
+    @Test
+    public void shouldFindFourBoomerangsBruteForce() {
+        double[][] points = new double[4][2];
+        points[0] = new double[] {0,0};
+        points[1] = new double[] {1,0};
+        points[2] = new double[] {-1,0};
+        points[3] = new double[] {0,1};
+        int result = mainApplication.numberOfBoomerangsBruteForce(points);
+
+        assert result == 4;
+    }
+
+    @Test
+    public void shouldFindElevenBoomerangsFivePointsBruteForce() {
+        double[][] points = new double[5][2];
+        points[0] = new double[] {0,0};
+        points[1] = new double[] {1,0};
+        points[2] = new double[] {-1,0};
+        points[3] = new double[] {0,1};
+        points[3] = new double[] {0,-1};
+        int result = mainApplication.numberOfBoomerangsBruteForce(points);
+
+        assert result == 11;
+    }
+
 }
